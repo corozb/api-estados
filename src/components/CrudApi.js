@@ -1,8 +1,8 @@
-import { useState, useEffect, useReducer } from 'react'
+import { useState, useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
 import { helpHttp } from '../helpers/helpHttp'
+import { readAllAction, noAction, createAction, updateAction, deleteAction } from '../redux/actions/actions'
 
-import { TYPES } from '../use-reducer/actions/actions'
-import { crudReducer, initialState } from '../use-reducer/reducers/crudReducer'
 import CrudForm from '../components/CrudForm'
 import CrudTable from '../components/CrudTable'
 import Loader from '../components/Loader'
@@ -12,8 +12,9 @@ const api = helpHttp()
 const url = 'http://localhost:5000/santos'
 
 const CrudApi = () => {
-  const [state, dispatch] = useReducer(crudReducer, initialState)
-  const { database } = state
+  const dispatch = useDispatch()
+  const state = useSelector((state) => state)
+  const { database } = state.crud
 
   const [dataToEdit, setDataToEdit] = useState(null)
   const [error, setError] = useState(null)
@@ -23,14 +24,14 @@ const CrudApi = () => {
     setLoading(true)
     api.get(url).then((res) => {
       if (!res.err) {
-        dispatch({ type: TYPES.READ_ALL_DATA, payload: res })
+        dispatch(readAllAction(res))
       } else {
-        dispatch({ type: TYPES.NO_DATA })
+        dispatch(noAction)
         setError(res)
       }
       setLoading(false)
     })
-  }, [url])
+  }, [dispatch])
 
   const createData = (data) => {
     data.id = Date.now()
@@ -41,7 +42,7 @@ const CrudApi = () => {
 
     api.post(url, options).then((res) => {
       if (!res.err) {
-        dispatch({ type: TYPES.CREATE_DATA, payload: res })
+        dispatch(createAction(data))
       } else {
         setError(res)
       }
@@ -59,7 +60,7 @@ const CrudApi = () => {
 
       api.del(endpoint, options).then((res) => {
         if (!res.err) {
-          dispatch({ type: TYPES.DELETE_DATA, payload: id })
+          dispatch(deleteAction(id))
         } else {
           setError(res)
         }
@@ -81,7 +82,7 @@ const CrudApi = () => {
       if (!res.err) {
         //let newData = db.map((el) => (el.id === data.id ? data : el));
         //setDb(newData)
-        dispatch({ type: TYPES.UPDATE_DATA, payload: data })
+        dispatch(updateAction(data))
       } else {
         setError(res)
       }
@@ -90,7 +91,7 @@ const CrudApi = () => {
 
   return (
     <div>
-      <h2>CRUD API con useReducer</h2>
+      <h2>CRUD API con Redux</h2>
       <article className='grid-1-2'>
         <CrudForm
           createData={createData}
