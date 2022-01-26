@@ -36,9 +36,14 @@
       "constellation": "Geminis"
     },
     {
+      "name": "Kanón",
+      "constellation": "Géminis",
+      "id": 1626132723014
+    },
+    {
       "name": "Shura",
       "constellation": "Capricornio",
-      "id": 1617237562207
+      "id": 1626133398548
     }
   ]
 }

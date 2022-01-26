@@ -1,11 +1,11 @@
 import './App.css'
-import AppUseContext from './contextapi/AppUseContext'
+import AppReducer from './use-reduce/AppReducer'
 
 function App() {
   return (
     <div className='App'>
       <h1>Api Request</h1>
-      <AppUseContext />
+      <AppReducer />
     </div>
   )
 }

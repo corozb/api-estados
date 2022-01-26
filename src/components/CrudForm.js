@@ -1,5 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react'
-import { AppContext } from '../context/AppContext'
+import React, { useState, useEffect } from 'react'
 
 const initialForm = {
   name: '',
@@ -7,9 +6,7 @@ const initialForm = {
   id: null,
 }
 
-const CrudForm = () => {
-  const { createData, updateData, dataToEdit, setDataToEdit } = useContext(AppContext)
-
+const CrudForm = ({ createData, updateData, dataToEdit, setDataToEdit }) => {
   const [form, setForm] = useState(initialForm)
 
   useEffect(() => {
@@ -48,8 +45,6 @@ const CrudForm = () => {
     setForm(initialForm)
     setDataToEdit(null)
   }
-
-  console.log(dataToEdit)
 
   return (
     <div>
