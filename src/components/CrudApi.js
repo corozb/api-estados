@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router'
 import { useSelector, useDispatch } from 'react-redux'
 import { helpHttp } from '../helpers/helpHttp'
 import { readAllAction, noAction, createAction, updateAction, deleteAction } from '../redux/actions/actions'
@@ -12,6 +13,8 @@ const api = helpHttp()
 const url = 'http://localhost:5000/santos'
 
 const CrudApi = () => {
+  const navigate = useNavigate()
+
   const dispatch = useDispatch()
   const state = useSelector((state) => state)
   const { database } = state.crud
@@ -91,6 +94,7 @@ const CrudApi = () => {
 
   return (
     <div>
+      <button onClick={() => navigate('/')}>back</button>
       <h2>CRUD API con Redux</h2>
       <article className='grid-1-2'>
         <CrudForm

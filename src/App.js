@@ -1,11 +1,10 @@
 import './App.css'
-import AppRedux from './redux/AppRedux'
+import AppRoutes from './routes/AppRoutes'
 
 function App() {
   return (
     <div className='App'>
-      <h1>Api Request</h1>
-      <AppRedux />
+      <AppRoutes />
     </div>
   )
 }
