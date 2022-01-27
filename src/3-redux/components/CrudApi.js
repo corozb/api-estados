@@ -1,13 +1,13 @@
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router'
 import { useSelector, useDispatch } from 'react-redux'
-import { helpHttp } from '../helpers/helpHttp'
-import { readAllAction, noAction, createAction, updateAction, deleteAction } from '../redux/actions/actions'
+import { helpHttp } from '../../helpers/helpHttp'
+import { readAllAction, noAction, createAction, updateAction, deleteAction } from '../../3-redux/actions/actions'
 
-import CrudForm from '../components/CrudForm'
-import CrudTable from '../components/CrudTable'
-import Loader from '../components/Loader'
-import Message from '../components/Message'
+import CrudForm from '../../components/CrudForm'
+import CrudTable from '../../components/CrudTable'
+import Loader from '../../components/Loader'
+import Message from '../../components/Message'
 
 const api = helpHttp()
 const url = 'http://localhost:5000/santos'
