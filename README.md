@@ -1,4 +1,4 @@
-# API Request
+# API Request with Redux
 
 I use this repo to learn about make api request using diferents kind of hooks to manage state.
 
